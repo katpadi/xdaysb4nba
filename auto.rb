@@ -1,5 +1,8 @@
 #!/usr/bin/env ruby
+require "bundler/setup"
+
 require 'twitter'
+
 require 'yaml'
 require 'active_support/core_ext/numeric/time'
 
