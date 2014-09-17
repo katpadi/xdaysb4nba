@@ -7,20 +7,20 @@ require 'yaml'
 require 'active_support/core_ext/numeric/time'
 
 
-@@config = YAML.load_file("config.yml") rescue nil || {}
+CONF = YAML.load_file("config.yml") rescue nil || {}
 
 def get_xdays()
   Time.zone = 'Singapore'
-  x_days = (Time.zone.parse(@@config['misc']['target_date'])- Time.zone.now).to_i/1.day
+  x_days = (Time.zone.parse(CONF['misc']['target_date'])- Time.zone.now).to_i/1.day
 end
 
 def send_tweet()
   # Set up twitter
   client = Twitter::REST::Client.new do |config|
-    config.consumer_key        = @@config['api']['consumer_key']
-    config.consumer_secret     = @@config['api']['consumer_secret']
-    config.access_token        = @@config['access']['token']
-    config.access_token_secret = @@config['access']['secret']
+    config.consumer_key        = CONF['api']['consumer_key']
+    config.consumer_secret     = CONF['api']['consumer_secret']
+    config.access_token        = CONF['access']['token']
+    config.access_token_secret = CONF['access']['secret']
   end
 
   # Check if there is a file
