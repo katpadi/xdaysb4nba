@@ -30,6 +30,7 @@ def send_tweet()
   # Use it to tweet!!!
   client.update_with_media("Owww yeah!!! There are only #{get_xdays()} days left before the @NBA starts. Let's go @Lakers!", File.new(img_path))
 
+  puts "Awesome! #{Time.now}"
   # ========= JUST MY NOTES =========
   # OK so posting with just text is easy
   # client.update("Test #{get_xdays()}  #{Time.new.strftime("%Y-%m-%d %H:%M:%S")}")
