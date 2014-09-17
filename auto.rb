@@ -28,7 +28,7 @@ def send_tweet()
   File.file?("images/#{get_xdays()}.jpg") ? img_path = "images/#{get_xdays()}.jpg" : img_path = "images/404.jpg"
 
   # Use it to tweet!!!
-  client.update_with_media("Owww yeah!!! There are only #{get_xdays()} left before the @NBA starts. Let's go @Lakers!", File.new(img_path))
+  client.update_with_media("Owww yeah!!! There are only #{get_xdays()} days left before the @NBA starts. Let's go @Lakers!", File.new(img_path))
 
   # ========= JUST MY NOTES =========
   # OK so posting with just text is easy
