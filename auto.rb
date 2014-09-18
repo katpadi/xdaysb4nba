@@ -11,7 +11,8 @@ CONF = YAML.load_file("config.yml") rescue nil || {}
 
 def get_xdays()
   Time.zone = 'Singapore'
-  x_days = (Time.zone.parse(CONF['misc']['target_date'])- Time.zone.now).to_i/1.day
+  # +1 including end date
+  x_days = (Time.zone.parse(CONF['misc']['target_date'])- Time.zone.now).to_i/1.day + 1
 end
 
 def send_tweet()
@@ -30,7 +31,6 @@ def send_tweet()
   # Use it to tweet!!!
   client.update_with_media("Owww yeah!!! There are only #{get_xdays()} days left before the @NBA starts. Let's go @Lakers!", File.new(img_path))
 
-  puts "Awesome! #{Time.now}"
   # ========= JUST MY NOTES =========
   # OK so posting with just text is easy
   # client.update("Test #{get_xdays()}  #{Time.new.strftime("%Y-%m-%d %H:%M:%S")}")
@@ -43,6 +43,5 @@ def send_tweet()
   # ========= JUST MY NOTES =========
 
 end
-
 
 send_tweet()
