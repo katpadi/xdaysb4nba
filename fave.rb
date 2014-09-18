@@ -17,8 +17,13 @@ def favorite_a_tweet()
     config.access_token_secret = CONF['access']['secret']
   end
 
+  if CONF['hashtags'].to_a.empty?
+    puts "No hashtags!"
+    exit
+  end
+
   # Put your search terms in config.yml
-  hashtags = CONF['hashtags'].join(" OR ") rescue nil || {}
+  hashtags = CONF['hashtags'].join(" OR ")
 
   # generate a random number 1-25
   # Random for unpredictability IDK why
