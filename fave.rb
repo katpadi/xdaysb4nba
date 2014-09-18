@@ -20,20 +20,17 @@ def favorite_a_tweet()
   # Put your search terms in config.yml
   hashtags = CONF['hashtags'].join(" OR ")
 
-  #favorite_this = searches.sample
-  puts hashtags
-
   # generate a random number 1-25
-  # According to its docs, 100 is twitter's max but it's not allowing me to do so
+  # Random for unpredictability IDK why
   x = rand(25)
-  puts x
-  test = client.search("#{hashtags} -rt", :result_type => "mixed", :count => x, :lang => "en").take(x).sample
-  #puts test.text
-  #puts test.id
-  #puts test.user.screen_name
-  client.favorite(test.id)
+
+  tweet = client.search("#{hashtags} -rt", :result_type => "mixed", :count => x, :lang => "en").take(x).sample
+
+  #Favorite!
+  client.favorite(tweet.id)
 
   # Log here...
+  File.open("faves.log", 'a') { |file| file.puts("#{Time.new.inspect} https://twitter.com/#{tweet.user.screen_name}/status/#{tweet.id}\n") }
 end
 
 #send_tweet()
