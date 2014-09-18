@@ -8,7 +8,7 @@ require 'active_support/core_ext/numeric/time'
 
 CONF = YAML.load_file("config.yml") rescue nil || {}
 
-def search_random()
+def favorite_a_tweet()
 
   client = Twitter::REST::Client.new do |config|
     config.consumer_key        = CONF['api']['consumer_key']
@@ -37,4 +37,4 @@ def search_random()
 end
 
 #send_tweet()
-search_random()
+favorite_a_tweet()
