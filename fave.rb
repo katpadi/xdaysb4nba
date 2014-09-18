@@ -18,7 +18,7 @@ def favorite_a_tweet()
   end
 
   # Put your search terms in config.yml
-  hashtags = CONF['hashtags'].join(" OR ")
+  hashtags = CONF['hashtags'].join(" OR ") rescue nil || {}
 
   # generate a random number 1-25
   # Random for unpredictability IDK why
