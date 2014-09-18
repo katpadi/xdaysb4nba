@@ -6,30 +6,27 @@ require 'twitter'
 require 'yaml'
 require 'active_support/core_ext/numeric/time'
 
-CONF = YAML.load_file("config.yml") rescue nil || {}
+def init()
+  @CONF = YAML.load_file("config.yml") rescue nil || {}
+
+  if @CONF['hashtags'].to_a.empty?
+    puts "No hashtags!"
+    exit
+  end
+end
 
 def favorite_a_tweet()
 
   client = Twitter::REST::Client.new do |config|
-    config.consumer_key        = CONF['api']['consumer_key']
-    config.consumer_secret     = CONF['api']['consumer_secret']
-    config.access_token        = CONF['access']['token']
-    config.access_token_secret = CONF['access']['secret']
+    config.consumer_key        = @CONF['api']['consumer_key']
+    config.consumer_secret     = @CONF['api']['consumer_secret']
+    config.access_token        = @CONF['access']['token']
+    config.access_token_secret = @CONF['access']['secret']
   end
-
-  if CONF['hashtags'].to_a.empty?
-    puts "No hashtags!"
-    exit
-  end
-
   # Put your search terms in config.yml
-  hashtags = CONF['hashtags'].join(" OR ")
+  hashtags = @CONF['hashtags'].join(" OR ")
 
-  # generate a random number 1-25
-  # Random for unpredictability IDK why
-  x = rand(25)
-
-  tweet = client.search("#{hashtags} -rt", :result_type => "mixed", :count => x, :lang => "en").take(x).sample
+  tweet = client.search("#{hashtags} -rt", :result_type => "mixed", :lang => "en").to_a.sample
 
   #Favorite!
   client.favorite(tweet.id)
@@ -38,5 +35,8 @@ def favorite_a_tweet()
   File.open("faves.log", 'a') { |file| file.puts("#{Time.new.inspect} https://twitter.com/#{tweet.user.screen_name}/status/#{tweet.id}\n") }
 end
 
-#send_tweet()
-favorite_a_tweet()
+# Ito daw parang main
+if __FILE__ == $0
+  init()
+  favorite_a_tweet()
+end
