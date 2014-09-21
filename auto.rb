@@ -11,6 +11,7 @@ CONF = YAML.load_file("config.yml") rescue nil || {}
 
 def get_xdays()
   Time.zone = 'Singapore'
+  # +1 including end date
   x_days = (Time.zone.parse(CONF['misc']['target_date'])- Time.zone.now).to_i/1.day
 end
 
