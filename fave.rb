@@ -5,7 +5,6 @@ require 'twitter'
 
 require 'yaml'
 require 'active_support/core_ext/numeric/time'
-require 'English'
 
 def init()
   @CONF = YAML.load_file("config.yml") rescue nil || {}
@@ -42,13 +41,13 @@ def favorite_a_tweet()
   @client.favorite(tweet.id)
 
   # Log here...
-  File.open("faves.log", 'a') { |file| file.puts("#{$INPUT_LINE_NUMBER} #{Time.new.inspect} https://twitter.com/#{tweet.user.screen_name}/status/#{tweet.id}\n") }
+  File.open("faves.log", 'a') { |file| file.puts("#{Time.new.inspect} https://twitter.com/#{tweet.user.screen_name}/status/#{tweet.id}\n") }
 end
 
 def check_followers_count()
   x = @client.user.followers_count()
   # Log here...
-  File.open("followers.log", 'a') { |file| file.puts("#{$INPUT_LINE_NUMBER} #{Time.new.inspect} #{x}\n") }
+  File.open("followers.log", 'a') { |file| file.puts("#{Time.new.inspect} #{x}\n") }
 end
 
 # Ito daw parang main
