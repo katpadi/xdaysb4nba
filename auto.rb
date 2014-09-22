@@ -43,5 +43,5 @@ def send_tweet()
 
 end
 
-#send_tweet()
-get_xdays()
+send_tweet()
+#get_xdays()
