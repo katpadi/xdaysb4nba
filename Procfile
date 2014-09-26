@@ -1,0 +1,1 @@
+web: bundle exec ruby favoriturrr/app.rb -p $PORT
