@@ -8,14 +8,17 @@
 
     %table
       %tr
+        %th Count
         %th Date
         %th Tweet
-      - @faves_list.each do |row|
+      - @faves_list.each_with_index do |row,i|
         %tr
-        - row.split("+0800 ").each do |column|
-          - if column.include? "https:"
-            %td
-              %a{:href => "#{column}"} #{column}
-          - else
-            %td
-              %p #{column}
+          %td
+            %p #{i}
+            - row.split("-0400").each do |column|
+              - if column.include? "https:"
+                %td
+                  %a{:href => "#{column}"} #{column}
+              - else
+                %td
+                  %p #{column}
