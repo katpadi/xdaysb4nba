@@ -1,0 +1,21 @@
+!!!
+%html
+  %head
+    %title Kat's Favoriting Spree
+    %link{:rel => :stylesheet, :type => :"text/css", :href => "css/styles.css"}
+  %body
+    %h1 Favorited Tweets
+
+    %table
+      %tr
+        %th Date
+        %th Tweet
+      - @faves_list.each do |row|
+        %tr
+        - row.split("+0800 ").each do |column|
+          - if column.include? "https:"
+            %td
+              %a{:href => "#{column}"} #{column}
+          - else
+            %td
+              %p #{column}
