@@ -7,5 +7,5 @@ get '/' do
 end
 
 def read_list
-  @faves_list = File.open('../faves.log', 'r').readlines
+  @faves_list = File.open('faves.log', 'r').readlines
 end
