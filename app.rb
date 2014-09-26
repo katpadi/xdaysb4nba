@@ -18,7 +18,7 @@ def read_from_katpadi()
 end
 
 def follower_count()
-  @followers  = open('http://katpadi.ph/favelogs/followers.html') {|f| f.readlines }
+  followers  = open('http://katpadi.ph/favelogs/followers.html') {|f| f.readlines }
   cunt = Array.new
   followers.each do |line|
     cunt.push(line.split.last)
