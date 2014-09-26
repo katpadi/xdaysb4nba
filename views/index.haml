@@ -1,24 +1,33 @@
 !!!
 %html
   %head
-    %title Kat's Favoriting Spree
+    %title KatPadi is Bored
     %link{:rel => :stylesheet, :type => :"text/css", :href => "css/styles.css"}
   %body
-    %h1 Peak follower count: #{@peak}
-    %h1 Favorited Tweets
-    %table
-      %tr
-        %th Count
-        %th Date
-        %th Tweet
-      - @faves_list.each_with_index do |row,i|
-        %tr
-          %td
-            %p #{i}
-            - row.split("-0400").each do |column|
-              - if column.include? "https:"
-                %td
-                  %a{:href => "#{column}"} #{column}
-              - else
-                %td
-                  %p #{column}
+    #container
+      #header
+        %h1
+          Experiment & Practice Shizz
+      #content
+        %p
+          Lorem ipsultem velt vero praesent luptatudolore te feugait nulla facilisi.
+        %h3 Peak follower count: #{@peak}
+        %h3 Favorited Tweets
+        %table
+          %tr
+            %th Count
+            %th Date
+            %th Tweet
+          - @faves_list.each_with_index do |row,i|
+            %tr
+              %td
+                %p #{i+1}
+                - row.split("-0400").each do |column|
+                  - if column.include? "https:"
+                    %td
+                      %a{:href => "#{column}"} #{column}
+                  - else
+                    %td
+                      %p #{column}
+      #footer
+        Copyright © Kat Padilla, 2014

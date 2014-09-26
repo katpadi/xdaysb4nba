@@ -1,3 +1,38 @@
+#container
+{
+    margin: 0 30px;
+    background: #fff;
+}
+
+#header
+{
+    background: #ccc;
+    padding: 20px;
+}
+
+#header h1 { margin: 0; }
+
+#content
+{
+    clear: left;
+    padding: 20px;
+}
+
+#content h2
+{
+    color: #000;
+    font-size: 160%;
+    margin: 0 0 .5em;
+}
+
+#footer
+{
+    background: #ccc;
+    text-align: right;
+    padding: 20px;
+    height: 1%;
+}
+
 table a:link {
     color: #ffa500;
     font-weight: bold;
